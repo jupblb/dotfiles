@@ -61,6 +61,9 @@ lspconfig.metals.setup {
   root_dir = lspconfig.util.root_pattern("build.sbt", "build.sc", ".git")
 }
 
+local luadev = require("lua-dev").setup();
+lspconfig.sumneko_lua.setup(luadev)
+
 if vim.fn.executable('pyls') == 1 then
   lspconfig.pyls.setup {}
 end

@@ -153,7 +153,7 @@
     neovim = {
       extraConfig   = builtins.readFile ../config/neovim/init.vim;
       plugins       = with pkgs.vimPlugins; [ {
-          config = "let $GLOW_STYLE = 'light' | nmap <Leader>m :Glow<CR>";
+          config = "let $GLOW_STYLE = 'light'";
           plugin = glow-nvim;
         } {
           config = builtins.readFile ../config/neovim/gruvbox.vim;
@@ -218,13 +218,19 @@
           config = "let g:vimwiki_key_mappings = { 'all_maps': 0 }";
           plugin = vimwiki;
         }
-        vim-cool vim-go vim-signify vim-sleuth
+        lua-dev vim-cool vim-go vim-signify vim-sleuth
       ];
       enable        = true;
       extraPackages =
         let
-          packages     = with pkgs;
-            [ fd gcc glow gopls metals ripgrep rnix-lsp tree-sitter ];
+          packages     = with pkgs; [
+            fd
+            gcc glow gopls
+            metals
+            ripgrep rnix-lsp
+            sumneko-lua-language-server
+            tree-sitter
+          ];
           nodePackages = with pkgs.nodePackages; [
             bash-language-server
             npm
